@@ -10,7 +10,7 @@
 <div class="row" id="app">
 
 
-    <div class="col-6">
+    <div class="col-6" style="text-align: right">
         <textarea v-model="input" style="width: 100%; height: 80vh"></textarea>
         <button class="btn btn-info mt-2" v-on:click="beautify">Beautify</button>
     </div>
@@ -30,35 +30,35 @@
 
             </div>
         </ul>
+
+        <div class="mt-10" v-if="cards.length">
+            <h2> Table </h2>
+
+            <table>
+                <tr>
+                    <th>
+                        Task
+                    </th>
+                    <th>
+                        TaskList
+                    </th>
+                </tr>
+                <tr class="mt-3" v-for="card in cards">
+                    <td>
+                        {{ card.name }}
+                    </td>
+                    <td class="mt-3" v-for="checklist in card.checklists">
+                        <h5 v-if="card.checklists.length > 1">{{checklist.name}}</h5>
+                        <div v-for="checkItem in checklist.checkItems">
+                            {{ checkItem.name }}
+                        </div>
+                    </td>
+
+                </tr>
+            </table>
+        </div>
+
     </div>
-
-    <div class="col-12">
-        <h2>Table </h2>
-
-        <table>
-            <tr>
-                <th>
-                    Task
-                </th>
-                <th>
-                    TaskList
-                </th>
-            </tr>
-            <tr class="mt-3" v-for="card in cards">
-                <td>
-                    {{ card.name }}
-                </td>
-                <td class="mt-3" v-for="checklist in card.checklists">
-                    <h5 v-if="card.checklists.length > 1">{{checklist.name}}</h5>
-                    <div v-for="checkItem in checklist.checkItems">
-                        {{ checkItem.name }}
-                    </div>
-                </td>
-
-            </tr>
-        </table>
-    </div>
-
 </div>
 
 
