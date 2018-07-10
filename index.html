@@ -1,0 +1,69 @@
+<html xmlns:v-on="http://www.w3.org/1999/xhtml">
+
+<link rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous">
+<body>
+<h1>Trello Json Beautifier</h1>
+
+<div class="row" id="app">
+
+
+    <div class="col-6">
+        <textarea v-model="input" style="width: 100%; height: 80vh"></textarea>
+        <button class="btn btn-info mt-2" v-on:click="beautify">Beautify</button>
+    </div>
+
+    <div class="col-6">
+        <ul>
+            <div class="mt-3" v-for="card in cards">
+                <h3>{{ card.name }}</h3>
+                <div class="mt-3" v-for="checklist in card.checklists">
+                    <h5 v-if="card.checklists.length > 1">{{checklist.name}}</h5>
+                    <ul>
+                        <li v-for="checkItem in checklist.checkItems">
+                            {{ checkItem.name }}
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </ul>
+    </div>
+
+    <div class="col-12">
+        <h2>Table </h2>
+
+        <table>
+            <tr>
+                <th>
+                    Task
+                </th>
+                <th>
+                    TaskList
+                </th>
+            </tr>
+            <tr class="mt-3" v-for="card in cards">
+                <td>
+                    {{ card.name }}
+                </td>
+                <td class="mt-3" v-for="checklist in card.checklists">
+                    <h5 v-if="card.checklists.length > 1">{{checklist.name}}</h5>
+                    <div v-for="checkItem in checklist.checkItems">
+                        {{ checkItem.name }}
+                    </div>
+                </td>
+
+            </tr>
+        </table>
+    </div>
+
+</div>
+
+
+</body>
+</html>
+
+<script src="vue.js"></script>
+<script src="code.js"></script>
